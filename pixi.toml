@@ -10,6 +10,8 @@ preview = ["pixi-build"]
 # CVE-: allow the fresh fixed build immediately (eMudhra)
 python = "0d"
 certifi = "0d"
+# CVE-2026-111497
+brotli-python = "0d"
 # CVE-2026-114134: allow the fixed version immediately
 black = "0d"
 

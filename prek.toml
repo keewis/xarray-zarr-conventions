@@ -1,0 +1,63 @@
+# Configuration file for `prek`, a git hook framework written in Rust.
+# See https://prek.j178.dev for more information.
+#:schema https://www.schemastore.org/prek.json
+
+[update]
+cooldown_days = 7
+
+[[repos]]
+repo = "builtin"
+hooks = [
+  { id = "trailing-whitespace" },
+  { id = "end-of-file-fixer" },
+  { id = "check-added-large-files" },
+  { id = "mixed-line-ending", args = ["-f", "lf"] },
+  { id = "check-merge-conflict" },
+]
+
+[[repos]]
+repo = "https://github.com/astral-sh/ruff-pre-commit"
+rev = "v0.17.1"
+hooks = [
+  { id = "ruff-check", args = ["--fix"] },
+]
+
+[[repos]]
+repo = "https://github.com/psf/black-pre-commit-mirror"
+rev = "26.10.1"
+hooks = [
+  { id = "black" },
+]
+
+[[repos]]
+repo = "https://github.com/rbubley/mirrors-prettier"
+rev = "v3.9.10"
+hooks = [
+  { id = "prettier", args = [
+    "--cache-location=.prettier_cache/cache",
+  ], exclude = "pixi.lock" },
+]
+
+[[repos]]
+repo = "https://github.com/abravalheri/validate-pyproject"
+rev = "0.26"
+hooks = [
+  { id = "validate-pyproject", additional_dependencies = [
+    "validate-pyproject-schema-store[all]",
+  ] },
+]
+
+[[repos]]
+repo = "https://github.com/zizmorcore/zizmor-pre-commit"
+rev = "v1.31.1"
+hooks = [
+  { id = "zizmor", args = ["--offline"] },
+]
+
+[[repos]]
+repo = "https://github.com/ComPWA/taplo-pre-commit"
+rev = "v0.9.3"
+hooks = [
+  { id = "taplo-format", args = ["--option", "array_auto_collapse=false"] },
+  { id = "taplo-lint", args = ["--no-schema"] },
+]

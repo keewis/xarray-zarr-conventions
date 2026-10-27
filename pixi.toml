@@ -3,7 +3,67 @@ channels = ["conda-forge"]
 name = "xarray-zarr-conventions"
 platforms = ["linux-64", "osx-arm64", "win-64"]
 version = "0.1.0"
+exclude-newer = "7d"
+preview = ["pixi-build"]
+
+[exclude-newer]
+# CVE-: allow the fresh fixed build immediately (eMudhra)
+python = "0d"
+certifi = "0d"
+# CVE-2026-114134: allow the fixed version immediately
+black = "0d"
+
+[package]
+name = "xarray-zarr-conventions"
+version = "9999.0.0"
+
+[package.build]
+backend = { name = "pixi-build-python", version = "*" }
+
+[package.host-dependencies]
+hatchling = "*"
+hatch-vcs = "*"
+
+[package.run-dependencies]
+xarray = ">=2026.09.0"
+
+[package.run-constraints]
+xproj = ">=0.2.1"
+rasterix = ">=0.2.2"
+xdggs = ">=0.7.0"
 
 [tasks]
 
 [dependencies]
+xarray-zarr-conventions = { path = "." }
+
+[feature.optional-dependencies.dependencies]
+xproj = "*"
+rasterix = "*"
+xdggs = "*"
+
+[feature.dev.dependencies]
+ipython = "*"
+black = ">=26.10.1"
+
+[feature.dev.target.unix.dependencies]
+pdbpp = ">=0.12.1"
+
+[feature.lints.dependencies]
+prek = "*"
+
+[feature.py312.dependencies]
+python = "3.12.*"
+
+# [feature.py314.dependencies]
+# python = "3.14.*"
+
+# [feature.py315.dependencies]
+# python = "3.15.*"
+
+[environments]
+# ci-py312 = { features = ["py312", "optional-dependencies"] }
+# ci-py314 = { features = ["py314", "optional-dependencies"] }
+# ci-py315 = { features = ["py315", "optional-dependencies"] }
+default = { features = ["dev", "py312", "optional-dependencies"] }
+lints = { features = ["lints"], no-default-feature = true }

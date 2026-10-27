@@ -1,3 +1,10 @@
+# python files
+*.py[cod]
+
+# editor saves
+*~
+\#*\#
+
 # pixi environments
 .pixi/*
 !.pixi/config.toml

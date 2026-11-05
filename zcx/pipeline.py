@@ -1,7 +1,11 @@
 from xarray.coding.pipeline import CoderPipeline
 from xarray.namedarray.utils import module_available
 
-conventions = {}
+from zcx.conventions import dggs
+
+conventions = {
+    "dggs": (dggs.DggsCoder, ["xdggs"]),
+}
 
 
 def create_pipeline() -> CoderPipeline:

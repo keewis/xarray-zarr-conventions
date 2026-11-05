@@ -4,7 +4,7 @@ from xarray.namedarray.utils import module_available
 conventions = {}
 
 
-def pipeline() -> CoderPipeline:
+def create_pipeline() -> CoderPipeline:
     coders = {}
 
     for name, (coder_cls, deps) in conventions.items():

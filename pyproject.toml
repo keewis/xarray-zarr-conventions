@@ -28,6 +28,8 @@ version.source = "vcs"
 
 [tool.hatch.build.targets.sdist]
 only-include = ["xcz"]
+[tool.hatch.build.targets.wheel]
+packages = ["zcx"]
 
 [tool.ruff]
 builtins = ["ellipsis"]

@@ -3,17 +3,12 @@ channels = ["conda-forge"]
 name = "xarray-zarr-conventions"
 platforms = ["linux-64", "osx-arm64", "win-64"]
 version = "0.1.0"
-exclude-newer = "7d"
 preview = ["pixi-build"]
 
-[exclude-newer]
-# CVE-: allow the fresh fixed build immediately (eMudhra)
-python = "0d"
-certifi = "0d"
-# CVE-2026-111497
-brotli-python = "0d"
-# CVE-2026-114134: allow the fixed version immediately
-black = "0d"
+[workspace.exclude-newer]
+cutoff = "7d"
+[workspace.exclude-newer.exemptions]
+certifi = "*"
 
 [package]
 name = "xarray-zarr-conventions"
@@ -64,9 +59,6 @@ python = "3.13.*"
 # [feature.py315.dependencies]
 # python = "3.15.*"
 
-[feature.security-constraints.dependencies]
-brotli-python = ">=1.2.1"
-
 [environments]
 # ci-py312 = { features = ["py312", "optional-dependencies"] }
 # ci-py314 = { features = ["py314", "optional-dependencies"] }
@@ -75,6 +67,5 @@ default = { features = [
   "dev",
   "py313",
   "optional-dependencies",
-  "security-constraints",
 ] }
 lints = { features = ["lints"], no-default-feature = true }

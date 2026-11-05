@@ -38,6 +38,7 @@ xdggs = ">=0.7.0"
 
 [dependencies]
 xarray-zarr-conventions = { path = "." }
+xarray = { path = "../xarray" }
 
 [feature.optional-dependencies.dependencies]
 xproj = "*"
@@ -54,8 +55,8 @@ pdbpp = ">=0.12.1"
 [feature.lints.dependencies]
 prek = "*"
 
-[feature.py312.dependencies]
-python = "3.12.*"
+[feature.py313.dependencies]
+python = "3.13.*"
 
 # [feature.py314.dependencies]
 # python = "3.14.*"
@@ -63,9 +64,17 @@ python = "3.12.*"
 # [feature.py315.dependencies]
 # python = "3.15.*"
 
+[feature.security-constraints.dependencies]
+brotli-python = ">=1.2.1"
+
 [environments]
 # ci-py312 = { features = ["py312", "optional-dependencies"] }
 # ci-py314 = { features = ["py314", "optional-dependencies"] }
 # ci-py315 = { features = ["py315", "optional-dependencies"] }
-default = { features = ["dev", "py312", "optional-dependencies"] }
+default = { features = [
+  "dev",
+  "py313",
+  "optional-dependencies",
+  "security-constraints",
+] }
 lints = { features = ["lints"], no-default-feature = true }
